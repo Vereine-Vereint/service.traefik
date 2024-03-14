@@ -1,0 +1,8 @@
+[submodule "core"]
+	path = core
+	url = git@github.com:Vereine-Vereint/service.core.git
+	branch = main
+[submodule "borg"]
+	path = borg
+	url = git@github.com:Vereine-Vereint/service.borg.git
+	branch = main

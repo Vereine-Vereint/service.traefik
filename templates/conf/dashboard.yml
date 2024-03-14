@@ -1,0 +1,27 @@
+http:
+  routers:
+    dashboard:
+      rule: Host(`${DASHBOARD_DOMAIN}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+      service: api@internal
+      entryPoints:
+        - websecure
+      middlewares:
+        - auth-dashboard
+    redirect:
+      rule: Host(`${DASHBOARD_DOMAIN}`) && PathPrefix(`/`)
+      entryPoints:
+        - websecure
+      middlewares:
+        - redirect-dashboard
+      service: noop@internal
+
+  middlewares:
+    redirect-dashboard:
+      redirectRegex:
+        regex: "^https://${DASHBOARD_DOMAIN}/.*"
+        replacement: "https://${DASHBOARD_DOMAIN}/dashboard/"
+        permanent: true
+    auth-dashboard:
+      basicauth:
+        users: 
+          - "$DASHBOARD_BASICAUTH_USER"
