@@ -50,7 +50,7 @@ certificatesResolvers:
 
 providers:
   docker:
-    network: web
+    network: traefik
     exposedByDefault: false
     # tls:
     #   insecureSkipVerify: true
