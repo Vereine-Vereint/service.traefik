@@ -1,3 +1,4 @@
+#!/bin/bash
 SERVICE_NAME="traefik"
 SERVICE_VERSION="v0.1"
 
