@@ -24,4 +24,4 @@ http:
     auth-dashboard:
       basicauth:
         users: 
-          - "$DASHBOARD_BASICAUTH_USER"
+          - "$DASHBOARD_BASICAUTH_USER" # htpasswd -nb username password
