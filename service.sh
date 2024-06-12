@@ -1,6 +1,6 @@
 #!/bin/bash
 SERVICE_NAME="traefik"
-SERVICE_VERSION="v2.0"
+SERVICE_VERSION="v3.0"
 
 set -e
 
@@ -10,7 +10,6 @@ cd $SERVICE_DIR
 
 # CORE
 source ./core/core.sh
-source ./borg/borg.sh
 
 # ATTACHMENTS
 att_setup() {
