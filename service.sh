@@ -15,14 +15,14 @@ source ./borg/borg.sh
 # ATTACHMENTS
 att_setup() {
   docker network create traefik &>/dev/null || true
-  
-  # if CONFIG_PATH does not exists, copy default
+
   if [[ ! -d "$SERVICES_DIR/$CONFIG_PATH" ]]; then
-    echo "Copying default configuration to $CONFIG_PATH"
+    read -p "Enter 'DASHBOARD_DOMAIN': " DASHBOARD_DOMAIN
+
     mkdir -p $SERVICES_DIR/$CONFIG_PATH
-    cp $SERVICE_DIR/dashboard.example.yml $SERVICES_DIR/$CONFIG_PATH/dashboard.yml
-    echo "Manually add DASHBOARD_DOMAIN and DASHBOARD_BASICAUTH_USER to $CONFIG_PATH/dashboard.yml"
-    exit 1
+    # cp $SERVICE_DIR/dashboard.example.yml $SERVICES_DIR/$CONFIG_PATH/dashboard.yml
+    # sed -i "s/\`\${DASHBOARD_DOMAIN}\`/$DASHBOARD_DOMAIN/g" $SERVICES_DIR/$CONFIG_PATH/dashboard.yml
+    generate $SERVICE_DIR/dashboard.example.yml $SERVICES_DIR/$CONFIG_PATH/dashboard.yml
   fi
 }
 
