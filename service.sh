@@ -1,6 +1,6 @@
 #!/bin/bash
 SERVICE_NAME="traefik"
-SERVICE_VERSION="v3.0"
+SERVICE_VERSION="v3.1"
 
 set -e
 
@@ -23,6 +23,10 @@ att_setup() {
     # sed -i "s/\`\${DASHBOARD_DOMAIN}\`/$DASHBOARD_DOMAIN/g" $SERVICES_DIR/$CONFIG_PATH/dashboard.yml
     generate $SERVICE_DIR/dashboard.example.yml $SERVICES_DIR/$CONFIG_PATH/dashboard.yml
   fi
+}
+
+att_configure() {
+  generate templates/traefik.yml generated/traefik.yml
 }
 
 # MAIN
