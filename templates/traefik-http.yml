@@ -27,6 +27,7 @@ entryPoints:
     http: # set default tls settings
       tls:
         certResolver: ${CERT_RESOLVER}
+$(with_spaces 2 "$ENTRYPOINTS")
 
 certificatesResolvers:
   staging:
@@ -55,5 +56,5 @@ providers:
     # tls:
     #   insecureSkipVerify: true
   file:
-    directory: /etc/traefik
+    directory: /etc/traefik/conf
     watch: true

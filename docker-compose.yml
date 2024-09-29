@@ -16,6 +16,10 @@ services:
       - ${SERVICES_DIR}/${CONFIG_PATH}/:/etc/traefik/conf/
       - ./volumes/certs/:/certs/
       # - ./log:/log/
+
+    environment:
+      HETZNER_API_KEY: "${HETZNER_DNS_API_TOKEN}"
+
     networks:
       - traefik
     restart: unless-stopped

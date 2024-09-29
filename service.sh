@@ -1,6 +1,6 @@
 #!/bin/bash
 SERVICE_NAME="traefik"
-SERVICE_VERSION="v3.1"
+SERVICE_VERSION="v4.0"
 
 set -e
 
@@ -26,7 +26,26 @@ att_setup() {
 }
 
 att_configure() {
-  generate templates/traefik.yml generated/traefik.yml
+  # assert challenge type dns-hetzner
+  if [[ "$CHALLENGE_TYPE" == "dns-hetzner" ]]; then
+    # HETZNER_DNS_API_TOKEN, TLS_DOMAIN_MAIN, TLS_DOMAIN_SANS must be set
+    if [[ -z "$HETZNER_DNS_API_TOKEN" || -z "$TLS_DOMAIN_MAIN" || -z "$TLS_DOMAIN_SANS" ]]; then
+      echo "HETZNER_DNS_API_TOKEN, TLS_DOMAIN_MAIN, TLS_DOMAIN_SANS must be set"
+      exit 1
+    fi
+  else
+    set -o allexport
+    HETZNER_DNS_API_TOKEN="none" # supress warning
+    set +o allexport	
+  fi
+
+  template="$SERVICE_DIR/templates/traefik-$CHALLENGE_TYPE.yml"
+  if [[ ! -f "$template" ]]; then
+    echo "CHALLENGE_TYPE not valid"
+    exit 1
+  fi
+
+  generate $template $SERVICE_DIR/generated/traefik.yml
 }
 
 # MAIN
