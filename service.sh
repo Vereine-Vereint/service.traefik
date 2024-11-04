@@ -23,6 +23,9 @@ att_setup() {
     # sed -i "s/\`\${DASHBOARD_DOMAIN}\`/$DASHBOARD_DOMAIN/g" $SERVICES_DIR/$CONFIG_PATH/dashboard.yml
     generate $SERVICE_DIR/dashboard.example.yml $SERVICES_DIR/$CONFIG_PATH/dashboard.yml
   fi
+
+  sudo mkdir -p volumes/{prometheus,grafana}
+  sudo chmod 777 volumes/{prometheus,grafana}
 }
 
 att_configure() {
@@ -45,6 +48,7 @@ att_configure() {
     exit 1
   fi
 
+  generate $SERVICE_DIR/templates/docker-compose.yml $SERVICE_DIR/docker-compose.yml
   generate $template $SERVICE_DIR/generated/traefik.yml
 }
 

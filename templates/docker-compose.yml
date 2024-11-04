@@ -10,6 +10,8 @@ services:
       - 443:443
       # # Dashboard, if api.dashboard and api.insecure are also enabled
       # - 8080:8080
+$(with_spaces 6 "$EXTRA_PORTS")
+
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./generated/traefik.yml:/etc/traefik/traefik.yml:ro

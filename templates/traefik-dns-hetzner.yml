@@ -71,3 +71,5 @@ providers:
   file:
     directory: /etc/traefik/conf
     watch: true
+
+$(with_spaces 0 "$STATIC_CONFIG")
