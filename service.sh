@@ -23,9 +23,6 @@ att_setup() {
     # sed -i "s/\`\${DASHBOARD_DOMAIN}\`/$DASHBOARD_DOMAIN/g" $SERVICES_DIR/$CONFIG_PATH/dashboard.yml
     generate $SERVICE_DIR/dashboard.example.yml $SERVICES_DIR/$CONFIG_PATH/dashboard.yml
   fi
-
-  sudo mkdir -p volumes/{prometheus,grafana}
-  sudo chmod 777 volumes/{prometheus,grafana}
 }
 
 att_configure() {
