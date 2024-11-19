@@ -28,9 +28,7 @@ entryPoints:
       tls:
         certResolver: ${CERT_RESOLVER}
         domains:
-          - main: ${TLS_DOMAIN_MAIN}
-            sans: 
-$(with_spaces 14 "$TLS_DOMAIN_SANS")
+$(with_spaces 10 "$TLS_DOMAINS")
 
 $(with_spaces 2 "$ENTRYPOINTS")
 

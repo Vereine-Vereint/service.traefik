@@ -1,6 +1,6 @@
 #!/bin/bash
 SERVICE_NAME="traefik"
-SERVICE_VERSION="v4.0"
+SERVICE_VERSION="v5.0"
 
 set -e
 
@@ -29,8 +29,8 @@ att_configure() {
   # assert challenge type dns-hetzner
   if [[ "$CHALLENGE_TYPE" == "dns-hetzner" ]]; then
     # HETZNER_DNS_API_TOKEN, TLS_DOMAIN_MAIN, TLS_DOMAIN_SANS must be set
-    if [[ -z "$HETZNER_DNS_API_TOKEN" || -z "$TLS_DOMAIN_MAIN" || -z "$TLS_DOMAIN_SANS" ]]; then
-      echo "HETZNER_DNS_API_TOKEN, TLS_DOMAIN_MAIN, TLS_DOMAIN_SANS must be set"
+    if [[ -z "$HETZNER_DNS_API_TOKEN" || -z "$TLS_DOMAINS" ]]; then
+      echo "HETZNER_DNS_API_TOKEN, TLS_DOMAINS must be set"
       exit 1
     fi
   else
